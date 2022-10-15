@@ -1,0 +1,36 @@
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+  text-align: center;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.signup-card {
+  width: 25rem;
+  height: 26rem;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  padding: 1rem;
+}
+
+.tnc {
+  width: 25rem;
+  color: gray;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+}
+
+.bottom-container {
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  width: 25rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  /* color: rgba(0, 0, 0, 0.87); */
+}
+
+.bottom-container > span {
+  color: blueviolet;
+  cursor: pointer;
+}

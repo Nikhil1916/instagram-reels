@@ -1,0 +1,29 @@
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+  text-align: center;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.login-card {
+  width: 25rem;
+  height: 20rem;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  padding: 1rem;
+}
+
+.login-bottom-container {
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  width: 25rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  /* color: rgba(0, 0, 0, 0.87); */
+}
+
+.login-bottom-container > span {
+  color: blueviolet;
+  cursor: pointer;
+}
