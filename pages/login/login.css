@@ -4,7 +4,7 @@
   justify-content: center;
   margin-top: 6rem;
   text-align: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   color: rgba(0, 0, 0, 0.87);
 }
 
@@ -26,4 +26,18 @@
 .login-bottom-container > span {
   color: blueviolet;
   cursor: pointer;
+}
+
+.mobile-image {
+  background-image: url(../../assets/mobilePic.jpg);
+  width: 454px;
+  height: 618px;
+  position: relative;
+}
+
+.carousel {
+  position: absolute;
+  top: 50px;
+  left: 22px;
+  height: auto;
 }

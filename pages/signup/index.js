@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
-import logo from '../../assets/Instagram.jpg';
+import logo from '../../assets/logo.jpg';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
