@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,12 +16,21 @@ import logo from '../assets/logo.jpg';
 import Image from 'next/image';
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
+import { AuthContext } from '../context/Auth';
+import { useContext } from 'react';
+import { useRouter } from 'next/router';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { logOut } = useContext(AuthContext);
+  const router = useRouter();
+  const onLogout = async () => {
+    await logOut();
+    router.push('/login');
+  }
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -153,11 +162,20 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {/* {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">{"Profile"}</Typography>
+              </MenuItem>
+              <MenuItem onClick={() => {
+                handleCloseUserMenu(),
+                  onLogout()
+              }}>
+                <Typography textAlign="center">{"Log Out"}</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
