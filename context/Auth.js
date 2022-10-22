@@ -6,6 +6,7 @@ import { onAuthStateChanged } from "firebase/auth";
 export default function AuthWrapper({ children }) {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     console.log("loader", loading);
     onAuthStateChanged(auth, (user) => {
@@ -17,11 +18,13 @@ export default function AuthWrapper({ children }) {
     });
     setLoading(false);
   }, []);
+
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
   function logOut() {
+    setUser(null);
     return signOut(auth);
   }
 
@@ -30,6 +33,7 @@ export default function AuthWrapper({ children }) {
     logOut,
     user
   }
+
   return (
     <AuthContext.Provider value={store}>
       {!loading && children}

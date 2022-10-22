@@ -30,7 +30,7 @@ export default function index() {
   const onLogin = async () => {
     try {
       await login(email, password);
-      setError('');
+      // setError('');
       setLoader(false);
       console.log("login");
     } catch (error) {
