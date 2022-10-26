@@ -1,0 +1,43 @@
+.forgot-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+  text-align: center;
+  /* flex-direction: column; */
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.forgot-card {
+  width: 25rem;
+  height: 15rem;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  padding: 1rem;
+}
+
+.forgot-bottom-container {
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  width: 25rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  /* color: rgba(0, 0, 0, 0.87); */
+}
+
+.forgot-bottom-container > span {
+  color: blueviolet;
+  cursor: pointer;
+}
+
+.mobile-image {
+  background-image: url(../../assets/mobilePic.jpg);
+  width: 454px;
+  height: 618px;
+  position: relative;
+}
+
+.carousel {
+  position: absolute;
+  top: 50px;
+  left: 22px;
+  height: auto;
+}

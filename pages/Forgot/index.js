@@ -16,37 +16,36 @@ import Link from 'next/link';
 
 export default function index() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loader, setLoader] = useState(false);
   const router = useRouter();
 
-  const { login, user } = useContext(AuthContext);
-  useEffect(() => {
-    console.log(user);
-    if (user) {
-      router.push('/');
-    }
-  }, [user]);
-  const onLogin = async () => {
+  const { forgotPassword, user } = useContext(AuthContext);
+  // useEffect(() => {
+  //   console.log(user);
+  //   if (user) {
+  //     router.push('/');
+  //   }
+  // }, [user]);
+  const onForgotPass = async () => {
     try {
-      await login(email, password);
-      // setError('');
+      await forgotPassword(email);
+      router.push('/login');
       setLoader(false);
-      console.log("login");
+      console.log("Forgot");
     } catch (error) {
       setError(error.code);
-      const loginCard = document.querySelector('.login-card');
-      loginCard.style.height = "22rem";
+      const loginCard = document.querySelector('.forgot-card');
+      loginCard.style.height = "17rem";
       setTimeout(() => {
         setError("");
-        loginCard.style.height = "20rem";
+        loginCard.style.height = "15rem";
       }, 3000);
     }
   }
 
   return (
-    <div className="login-container">
+    <div className="forgot-container">
       <div className='mobile-image'>
         <div className='carousel'>
           <Carousel autoPlay={true}
@@ -56,9 +55,6 @@ export default function index() {
             showStatus={false}
             showThumbs={false}
             stopOnHover
-            // autoFocus
-            centerMode
-            centerSlidePercentage={80}
             showIndicators={false}>
             <Image src={image1} />
             <Image src={image2} />
@@ -69,20 +65,18 @@ export default function index() {
         </div>
       </div>
       <div>
-        <div className="login-card">
+        <div className="forgot-card">
           <Image src={logo} />
           <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth margin="dense"
             value={email} type={"email"} onChange={(e) => setEmail(e.target.value)} />
-          <TextField id="outlined-basic" type={"password"} label="Password" variant="outlined" fullWidth margin="dense"
-            value={password} onChange={(e) => setPassword(e.target.value)} />
           {error != "" && <div style={{ color: "red" }}>{error}</div>}
-          <Link href="/Forgot">
-            <p style={{ color: "blue" }} className="cursor-pointer">Forgot Password</p>
+          <Link href="/login">
+            <p style={{ color: "blue" }} className="cursor-pointer">Login</p>
           </Link>
-          <Button variant="contained" fullWidth style={{ marginTop: "1rem" }} onClick={onLogin}>Log In</Button>
+          <Button variant="contained" fullWidth style={{ marginTop: "1rem" }} onClick={onForgotPass}>Send Reset E-mail</Button>
         </div>
         <Link href="/signup">
-          <div className='login-bottom-container'>
+          <div className='forgot-bottom-container'>
             Dont have an account ? <span>SignUp</span>
           </div>
         </Link>
