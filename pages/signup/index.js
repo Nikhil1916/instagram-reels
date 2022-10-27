@@ -6,8 +6,9 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/Auth';
-import { storage } from '../../firebase';
+import { storage, db } from '../../firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { doc, setDoc } from "firebase/firestore";
 export default function index() {
 
   const [email, setEmail] = useState("");
@@ -38,8 +39,15 @@ export default function index() {
         },
         () => {
           // Upload completed successfully, now we can get the download URL
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             console.log('File available at', downloadURL);
+            const userData = {
+              fullName,
+              email,
+              password,
+              profilePhoto: downloadURL
+            }
+            await setDoc(doc(db, "users", userInfo.user.uid), userData);
           });
           console.log("Sign up done");
         }

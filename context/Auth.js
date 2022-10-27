@@ -14,6 +14,7 @@ export default function AuthWrapper({ children }) {
         console.log("done");
         setUser(user);
       } else {
+        setUser("");
       }
     });
     setLoading(false);
@@ -28,7 +29,6 @@ export default function AuthWrapper({ children }) {
   }
 
   function logOut() {
-    setUser(null);
     return signOut(auth);
   }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import ResponsiveAppBar from './Navbar'
+import Navbar from './Navbar'
 import UploadButtons from './Upload'
 
 export default function Feed() {
@@ -7,7 +7,7 @@ export default function Feed() {
     <div className='feed-cont'>
 
       {/* materia ui navbar */}
-      <ResponsiveAppBar />
+      <Navbar />
       <UploadButtons />
       <div className='video-container'>
         <div className='post-container'>
