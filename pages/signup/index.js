@@ -9,8 +9,9 @@ import { AuthContext } from '../../context/Auth';
 import { storage, db } from '../../firebase';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { doc, setDoc } from "firebase/firestore";
+import { useRouter } from 'next/router';
 export default function index() {
-
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -45,9 +46,11 @@ export default function index() {
               fullName,
               email,
               password,
-              profilePhoto: downloadURL
+              profilePhoto: downloadURL,
+              uid: userInfo.user.uid
             }
             await setDoc(doc(db, "users", userInfo.user.uid), userData);
+            router.push("/login");
           });
           console.log("Sign up done");
         }

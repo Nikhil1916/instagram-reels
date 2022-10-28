@@ -22,7 +22,9 @@ import { useRouter } from 'next/router';
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Navbar = () => {
+const Navbar = (props) => {
+  // console.log(props);
+  const { userData } = props;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { logOut } = useContext(AuthContext);
@@ -143,7 +145,7 @@ const Navbar = () => {
             <ExploreIcon fontSize='large' className='nav-icons' />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={userData?.profilePhoto} />
               </IconButton>
             </Tooltip>
             <Menu
