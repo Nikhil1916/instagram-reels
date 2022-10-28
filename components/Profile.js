@@ -1,8 +1,10 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useContext } from 'react'
 import Navbar from './Navbar'
 import avatar from '../assets/avatar.png';
+import { AuthContext } from '../context/Auth';
 function Profile() {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <Navbar />
