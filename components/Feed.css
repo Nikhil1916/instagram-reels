@@ -44,8 +44,6 @@
 
 .post-container > video {
   height: 100%;
-  /* border: 1px solid black; */
-  background-color: yellow;
   width: 20rem;
   border-radius: 20px;
   object-fit: contain;

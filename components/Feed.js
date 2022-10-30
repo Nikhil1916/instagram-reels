@@ -1,13 +1,15 @@
-import { doc, onSnapshot } from 'firebase/firestore'
+import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../context/Auth'
 import { db } from '../firebase'
 import Navbar from './Navbar'
+import Post from './Post'
 import UploadButtons from './Upload'
 
 export default function Feed() {
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState({});
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
       console.log("doc", doc?.data());
@@ -15,6 +17,16 @@ export default function Feed() {
     })
     return () => { unsub() };
   }, [user]);
+
+  useEffect(() => {
+    const unsub = onSnapshot(query(collection(db, "posts"), orderBy("timestamp", "desc")), (snapshot) => {
+      const tempArr = [];
+      snapshot.docs.map(doc => tempArr.push(doc.data()));
+      console.log(tempArr);
+      setPosts([...tempArr]);
+    })
+  }, []);
+
   return (
     <div className='feed-cont'>
 
@@ -22,7 +34,7 @@ export default function Feed() {
       <Navbar userData={userData} />
       <UploadButtons userData={userData} />
       <div className='video-container'>
-        <div className='post-container'>
+        {/* <div className='post-container'>
           <video />
         </div>
         <div className='post-container'>
@@ -30,7 +42,17 @@ export default function Feed() {
         </div>
         <div className='post-container'>
           <video />
-        </div>
+        </div> */}
+        {
+          posts.map((post, index) => {
+            return (
+              <div>
+                {/* <video src={post.postURL} /> */}
+                <Post postData={post} key={index.toString()} />
+              </div>
+            )
+          })
+        }
       </div>
     </div>
   )
