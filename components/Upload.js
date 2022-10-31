@@ -5,12 +5,16 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { Alert } from '@mui/material';
 import { storage, db } from '../firebase';
 import { v4 as uuidv4 } from 'uuid';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { arrayUnion, doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 export default function UploadButtons({ userData }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [prog, setProgress] = useState(0);
+  const fileLimit = 50;
   const handleUpload = (event) => {
     const file = event.target.files[0];
-    console.log(file);
+    // console.log(file);
     if (file == null) {
       setError("File not supported");
       setTimeout(() => { setError('') }, 2000);
@@ -26,12 +30,13 @@ export default function UploadButtons({ userData }) {
     const storageRef = ref(storage, `${userData.uid}/Posts/${uid}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
     // Listen for state changes, errors, and completion of the upload.
+    setProgress(0);
     uploadTask.on('state_changed',
       (snapshot) => {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setProgress(progress);
-        console.log('Upload is ' + prog + '% done');
+        console.log('Upload is ' + progress + '% done');
       },
       (error) => {
         console.error(error);
@@ -50,16 +55,13 @@ export default function UploadButtons({ userData }) {
             timestamp: serverTimestamp()
           }
           await setDoc(doc(db, "posts", uid), postData);
+          await updateDoc(doc(db, "users", userData.uid), { posts: arrayUnion(uid) });
         });
         console.log("post added");
         setLoading(false);
       }
     )
   }
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [prog, setProgress] = useState(0);
-  const fileLimit = 50;
   return (
     <div className='upload-button'>
       {error != "" ? <Alert severity="error">{error}</Alert> : (

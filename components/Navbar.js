@@ -169,7 +169,10 @@ const Navbar = (props) => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))} */}
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={() => {
+                handleCloseUserMenu();
+                router.push("/profile");
+              }}>
                 <Typography textAlign="center">{"Profile"}</Typography>
               </MenuItem>
               <MenuItem onClick={() => {

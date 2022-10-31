@@ -32,7 +32,7 @@ export default function index() {
       await forgotPassword(email);
       router.push('/login');
       setLoader(false);
-      console.log("Forgot");
+      // console.log("Forgot");
     } catch (error) {
       setError(error.code);
       const loginCard = document.querySelector('.forgot-card');

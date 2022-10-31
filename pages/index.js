@@ -1,16 +1,11 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import Feed from '../components/Feed'
-import UploadButtons from '../components/Upload'
+import Redirect from '../components/Redirect'
 import { AuthContext } from '../context/Auth'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const Redirect = () => {
-    const router = useRouter();
-    router.push("/login");
-  }
   const { user } = useContext(AuthContext);
   return (
     <div className={styles.container}>

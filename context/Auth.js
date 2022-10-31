@@ -8,10 +8,10 @@ export default function AuthWrapper({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("loader", loading);
+    // console.log("loader", loading);
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("done");
+        // console.log("done");
         setUser(user);
       } else {
         setUser("");

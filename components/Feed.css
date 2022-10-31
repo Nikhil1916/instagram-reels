@@ -40,6 +40,7 @@
   height: 100%;
   width: 20rem;
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .post-container > video {
@@ -47,10 +48,22 @@
   width: 20rem;
   border-radius: 20px;
   object-fit: contain;
+  background-color: black;
 }
 
 @media screen and (max-width: 500px) {
   .nav-icons {
     display: none;
   }
+}
+
+.video-info {
+  position: absolute;
+  bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar-cont {
+  display: flex;
 }

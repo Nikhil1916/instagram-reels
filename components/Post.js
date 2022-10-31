@@ -3,6 +3,7 @@ import React from "react"
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 function Post({ postData }) {
+  // console.log(postData.postURL);
   return (
     <div className='post-container'>
       <video src={postData.postURL} />

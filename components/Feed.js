@@ -25,6 +25,7 @@ export default function Feed() {
       console.log(tempArr);
       setPosts([...tempArr]);
     })
+    return () => unsub();
   }, []);
 
   return (
@@ -34,21 +35,11 @@ export default function Feed() {
       <Navbar userData={userData} />
       <UploadButtons userData={userData} />
       <div className='video-container'>
-        {/* <div className='post-container'>
-          <video />
-        </div>
-        <div className='post-container'>
-          <video />
-        </div>
-        <div className='post-container'>
-          <video />
-        </div> */}
         {
           posts.map((post, index) => {
             return (
-              <div>
-                {/* <video src={post.postURL} /> */}
-                <Post postData={post} key={index.toString()} />
+              <div key={index.toString()}>
+                <Post postData={post} />
               </div>
             )
           })
