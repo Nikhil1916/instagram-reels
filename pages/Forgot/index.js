@@ -21,18 +21,11 @@ export default function index() {
   const router = useRouter();
 
   const { forgotPassword, user } = useContext(AuthContext);
-  // useEffect(() => {
-  //   console.log(user);
-  //   if (user) {
-  //     router.push('/');
-  //   }
-  // }, [user]);
   const onForgotPass = async () => {
     try {
       await forgotPassword(email);
       router.push('/login');
       setLoader(false);
-      // console.log("Forgot");
     } catch (error) {
       setError(error.code);
       const loginCard = document.querySelector('.forgot-card');

@@ -14,7 +14,6 @@ export default function UploadButtons({ userData }) {
   const fileLimit = 50;
   const handleUpload = (event) => {
     const file = event.target.files[0];
-    // console.log(file);
     if (file == null) {
       setError("File not supported");
       setTimeout(() => { setError('') }, 2000);
@@ -57,7 +56,6 @@ export default function UploadButtons({ userData }) {
           await setDoc(doc(db, "posts", uid), postData);
           await updateDoc(doc(db, "users", userData.uid), { posts: arrayUnion(uid) });
         });
-        console.log("post added");
         setLoading(false);
       }
     )

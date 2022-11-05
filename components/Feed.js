@@ -12,7 +12,6 @@ export default function Feed() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
-      console.log("doc", doc?.data());
       setUserData(doc?.data());
     })
     return () => { unsub() };
@@ -22,9 +21,8 @@ export default function Feed() {
     const unsub = onSnapshot(query(collection(db, "posts"), orderBy("timestamp", "desc")), (snapshot) => {
       const tempArr = [];
       snapshot.docs.map(doc => tempArr.push(doc.data()));
-      console.log(tempArr);
       setPosts([...tempArr]);
-    })
+    });
     return () => unsub();
   }, []);
 
@@ -39,7 +37,7 @@ export default function Feed() {
           posts.map((post, index) => {
             return (
               <div key={index.toString()}>
-                <Post postData={post} />
+                <Post postData={post} userData={user} />
               </div>
             )
           })

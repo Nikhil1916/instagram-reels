@@ -23,7 +23,6 @@ export default function index() {
 
   const { login, user } = useContext(AuthContext);
   useEffect(() => {
-    // console.log(user);
     if (user) {
       router.push('/');
     }
@@ -31,9 +30,7 @@ export default function index() {
   const onLogin = async () => {
     try {
       await login(email, password);
-      // setError('');
       setLoader(false);
-      // console.log("login");
     } catch (error) {
       setError(error.code);
       const loginCard = document.querySelector('.login-card');

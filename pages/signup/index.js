@@ -20,12 +20,10 @@ export default function index() {
   const [loading, setLoading] = useState(false);
   const { user, signUp } = useContext(AuthContext);
   const onSignUp = async () => {
-    // console.log(email, password, fullName, file, "done");
     try {
       setLoading(true);
       setError("");
       const userInfo = await signUp(email, password);
-      // console.log(JSON.stringify(userInfo));
       const storageRef = ref(storage, `${userInfo.user.uid}/Profile`);
       const uploadTask = uploadBytesResumable(storageRef, file);
       // Listen for state changes, errors, and completion of the upload.
@@ -57,7 +55,6 @@ export default function index() {
         }
       );
     } catch (error) {
-      console.log(error);
       setError(error.code);
       const signupCard = document.querySelector('.signup-card');
       signupCard.style.height = "28rem";

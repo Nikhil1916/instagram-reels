@@ -19,11 +19,14 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import { AuthContext } from '../context/Auth';
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
+// import { Route, Link, Routes, useLocation } from 'react-router-dom';
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = (props) => {
   // console.log(props);
+  // const location = useLocation();
+  // console.log(location);
   const { userData } = props;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -141,7 +144,7 @@ const Navbar = (props) => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }} className='nav-icons-cont'>
-            <HomeIcon fontSize='large' className='nav-icons' />
+            <HomeIcon fontSize='large' className='nav-icons cursor-pointer' onClick={() => { router.push('/') }} />
             <ExploreIcon fontSize='large' className='nav-icons' />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

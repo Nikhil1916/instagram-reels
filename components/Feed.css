@@ -65,8 +65,28 @@
   justify-content: space-between;
   height: 3rem;
   margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  align-items: center;
 }
 
-/* .avatar-cont {
+.avatar-cont {
   display: flex;
-} */
+  width: 70%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.avatar-cont > p {
+  margin-left: 0.5rem;
+}
+
+.post-like {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-like > p {
+  margin-left: 0.5rem;
+}
