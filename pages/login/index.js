@@ -49,7 +49,7 @@ export default function index() {
     <div className="login-container">
       <div className='mobile-image'>
         <div className='carousel'>
-          <Carousel autoPlay={true}
+          <Carousel autoPlay
             interval={2000}
             infiniteLoop
             showArrows={false}

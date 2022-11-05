@@ -39,8 +39,9 @@
 .post-container {
   height: 100%;
   width: 20rem;
-  margin-bottom: 1rem;
+  margin-bottom: 6rem;
   position: relative;
+  margin-top: 1rem;
 }
 
 .post-container > video {
@@ -59,11 +60,13 @@
 
 .video-info {
   position: absolute;
-  bottom: 0.5rem;
+  width: 20rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  margin-bottom: 1rem;
 }
-.avatar-cont {
+
+/* .avatar-cont {
   display: flex;
-}
+} */
