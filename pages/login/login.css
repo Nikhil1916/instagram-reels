@@ -4,7 +4,6 @@
   justify-content: center;
   margin-top: 6rem;
   text-align: center;
-  /* flex-direction: column; */
   color: rgba(0, 0, 0, 0.87);
 }
 
@@ -20,7 +19,6 @@
   width: 25rem;
   margin-top: 1rem;
   padding: 1rem;
-  /* color: rgba(0, 0, 0, 0.87); */
 }
 
 .login-bottom-container > span {
