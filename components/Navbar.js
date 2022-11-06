@@ -155,7 +155,7 @@ const Navbar = (props) => {
             {
               !isHomePage && <HomeIcon fontSize='large' className='nav-icons cursor-pointer' onClick={() => { router.push('/') }} />
             }
-            <ExploreIcon fontSize='large' className='nav-icons' />
+            {/* <ExploreIcon fontSize='large' className='nav-icons' /> */}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src={userData?.profilePhoto} />

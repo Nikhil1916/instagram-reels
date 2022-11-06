@@ -67,7 +67,7 @@ export default function UploadButtons({ userData }) {
         <Button variant="outlined" color='secondary' component="label" style={{ marginBottom: "0.5rem" }}>
           <MovieIcon />
           Upload Media
-          <input hidden accept="*" multiple type="file" onChange={(e) => { handleUpload(e) }} />
+          <input hidden accept="video/*" multiple type="file" onChange={(e) => { handleUpload(e) }} />
         </Button>)}
       {
         loading &&

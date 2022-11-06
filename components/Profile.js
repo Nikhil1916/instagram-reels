@@ -12,8 +12,8 @@ function Profile() {
   const [postIds, setPostIds] = useState([]);
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "users", user.uid), (doc) => {
-      setUserData(doc.data());
-      setPostIds(doc.data().posts);
+      setUserData(doc?.data());
+      setPostIds(doc?.data()?.posts);
     })
     return () => { unsub() };
   }, [user]);

@@ -75,6 +75,7 @@ function Post({ postData, userData }) {
             onClose={handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
+            maxWidth={true}
           >
             <div className="modal-container">
               <div className="video-modal">
