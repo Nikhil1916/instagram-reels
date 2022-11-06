@@ -10,10 +10,12 @@ import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import Comments from "./Comments";
 import DisplayComments from "./DisplayComments";
+import * as ReactDOM from 'react-dom';
 
 function Post({ postData, userData }) {
   const [like, setLike] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isMute, setIsMute] = useState(true);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,9 +41,24 @@ function Post({ postData, userData }) {
     }
   }
 
+  const handleMute = () => {
+    if (isMute) {
+      setIsMute(false);
+    } else {
+      setIsMute(true);
+    }
+  }
+
+  const handleNext = (e) => {
+    let nextVideo = ReactDOM.findDOMNode(e.target).parentNode.nextSibling;
+    if (nextVideo) {
+      nextVideo.scrollIntoView({ behaviour: "smooth" })
+    }
+  }
+
   return (
     <div className='post-container'>
-      <video src={postData?.postURL} />
+      <video autoPlay muted={isMute} src={postData?.postURL} onClick={handleMute} onEnded={(e) => { handleNext(e) }} />
       <div className="video-info">
         <div className="avatar-cont">
           <Avatar src={postData?.profilePhotoURL} />
@@ -61,7 +78,7 @@ function Post({ postData, userData }) {
           >
             <div className="modal-container">
               <div className="video-modal">
-                <video controls autoPlay={false} src={postData?.postURL} />
+                <video controls autoPlay muted src={postData?.postURL} />
               </div>
               <div className="comments-modal">
                 <Card className="card1">

@@ -29,6 +29,34 @@ export default function Feed() {
     return () => unsub();
   }, []);
 
+  const callback = (entries) => {
+    entries.forEach((entry) => {
+      let ele = entry.target.childNodes[0];
+      console.log(ele);
+      ele.play().then(() => {
+        if (!ele.paused && !entry.isIntersecting) {
+          ele.pause()
+        }
+      })
+    });
+  }
+
+  let options = {
+    threshold: 0.6
+  }
+  let observer = new IntersectionObserver(callback, options);
+  useEffect(() => {
+    const elements = document.querySelectorAll(".video-container");
+    let postContainer = elements[0].childNodes;
+    postContainer.forEach((video) => {
+      console.log(video.childNodes[0]); //video tag
+      observer.observe(video)
+    })
+    return () => {
+      observer.disconnect();
+    }
+  }, [posts])
+
   return (
     <div className='feed-cont'>
       <Navbar userData={userData} />
@@ -37,9 +65,7 @@ export default function Feed() {
         {
           posts.map((post, index) => {
             return (
-              <div key={index.toString()}>
-                <Post postData={post} userData={userData} />
-              </div>
+              <Post postData={post} userData={userData} key={index.toString()} />
             )
           })
         }
