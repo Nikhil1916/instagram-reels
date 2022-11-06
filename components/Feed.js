@@ -7,6 +7,7 @@ import Post from './Post'
 import UploadButtons from './Upload'
 
 export default function Feed() {
+
   const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
@@ -28,8 +29,6 @@ export default function Feed() {
 
   return (
     <div className='feed-cont'>
-
-      {/* materia ui navbar */}
       <Navbar userData={userData} />
       <UploadButtons userData={userData} />
       <div className='video-container'>

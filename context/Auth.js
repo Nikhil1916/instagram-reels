@@ -34,12 +34,17 @@ export default function AuthWrapper({ children }) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
+  function autoLogOut(expireToken) {
+    setTimeout(() => { logOut() }, expireToken)
+  }
+
   const store = {
     login,
     logOut,
     user,
     forgotPassword,
-    signUp
+    signUp,
+    autoLogOut
   }
 
   return (

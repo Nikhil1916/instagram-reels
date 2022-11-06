@@ -1,11 +1,26 @@
-import { Avatar } from "@mui/material"
-import React, { useEffect } from "react"
+import { Avatar, TextField } from "@mui/material"
+import { useEffect } from "react"
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useState } from "react";
+import CommentIcon from '@mui/icons-material/Comment';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
+
 function Post({ postData, userData }) {
   const [like, setLike] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (postData?.likes?.includes(userData?.uid)) {
@@ -32,10 +47,36 @@ function Post({ postData, userData }) {
           <p>{postData.profileName}</p>
         </div>
         <div className="post-like" >
-          <div style={like ? { color: 'red' } : {}}>
-            <FavoriteIcon onDoubleClick={() => handleLike()} />
+          <div style={like ? { color: 'red' } : { color: 'white' }}>
+            <FavoriteIcon className="cursor-pointer" onDoubleClick={() => handleLike()} />
           </div>
           <p>{postData.likes.length}</p>
+          <CommentIcon className="cursor-pointer" onClick={handleClickOpen} />
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <div className="modal-container">
+              <div className="video-modal">
+                <video controls autoPlay={true} src={postData?.postURL} />
+              </div>
+              <div className="comments-modal">
+                <Card className="card1"></Card>
+                <Card className="card2" sx={{ maxWidth: 345 }}>
+                  <Typography sx={{ display: "flex" }}>
+                    {postData?.likes?.length == 0 ? "Be the first one to like this post" : `Liked by ${postData?.likes?.length} users.`}
+                  </Typography>
+                  <div className="post-like-2">
+                    <FavoriteIcon className="cursor-pointer" style={like ? { color: "red" } : { color: "black" }} onClick={handleLike} />
+                    <TextField id="outlined-basic" label="Add Comment" variant="outlined" />
+                    <Button variant='contained' color="primary">Post</Button>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </Dialog>
         </div>
       </div>
     </div>

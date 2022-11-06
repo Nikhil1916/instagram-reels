@@ -94,3 +94,45 @@
   margin-left: 0.1rem;
   margin-right: 0.5rem;
 }
+
+.modal-container {
+  display: flex;
+  /* height: 100%; */
+  width: 100%;
+  /* padding: 1rem; */
+}
+
+.video-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 50%;
+  padding: 1rem;
+}
+
+.video-modal > video {
+  height: 90%;
+  width: 100%;
+}
+
+.comments-modal {
+  height: 100%;
+  padding: 1rem;
+}
+
+.card1 {
+  height: 50vh;
+  margin-top: 6.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-like-2 {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.post-like-2 > * {
+  margin-right: 0.3rem !important;
+}

@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useContext } from 'react'
 import Profile from '../../components/Profile';
 import Redirect from '../../components/Redirect';

@@ -21,7 +21,7 @@ export default function index() {
   const [loader, setLoader] = useState(false);
   const router = useRouter();
 
-  const { login, user } = useContext(AuthContext);
+  const { login, user, autoLogOut } = useContext(AuthContext);
   useEffect(() => {
     if (user) {
       router.push('/');
@@ -30,6 +30,7 @@ export default function index() {
   const onLogin = async () => {
     try {
       await login(email, password);
+      await autoLogOut(_tokenResponse.expiresIn * 1000); //auto logout after 1 hr conversion to milliseconds from seconds.
       setLoader(false);
     } catch (error) {
       setError(error.code);

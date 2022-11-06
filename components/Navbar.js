@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,19 +19,24 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import { AuthContext } from '../context/Auth';
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
-// import { Route, Link, Routes, useLocation } from 'react-router-dom';
 
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = (props) => {
-  // console.log(props);
-  // const location = useLocation();
-  // console.log(location);
   const { userData } = props;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { logOut } = useContext(AuthContext);
   const router = useRouter();
+  const [isHomePage, setIsHomePage] = useState(true);
+  useEffect(() => {
+    if (router.pathname == "/") {
+      setIsHomePage(true);
+    } else {
+      setIsHomePage(false);
+    }
+
+  }, [])
   const onLogout = async () => {
     await logOut();
     router.push('/login');
@@ -144,7 +149,9 @@ const Navbar = (props) => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }} className='nav-icons-cont'>
-            <HomeIcon fontSize='large' className='nav-icons cursor-pointer' onClick={() => { router.push('/') }} />
+            {
+              !isHomePage && <HomeIcon fontSize='large' className='nav-icons cursor-pointer' onClick={() => { router.push('/') }} />
+            }
             <ExploreIcon fontSize='large' className='nav-icons' />
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -172,12 +179,14 @@ const Navbar = (props) => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))} */}
-              <MenuItem onClick={() => {
-                handleCloseUserMenu();
-                router.push("/profile");
-              }}>
-                <Typography textAlign="center">{"Profile"}</Typography>
-              </MenuItem>
+              {
+                isHomePage && <MenuItem onClick={() => {
+                  handleCloseUserMenu();
+                  router.push("/profile");
+                }}>
+                  <Typography textAlign="center">{"Profile"}</Typography>
+                </MenuItem>
+              }
               <MenuItem onClick={() => {
                 handleCloseUserMenu(),
                   onLogout()
