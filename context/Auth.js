@@ -35,7 +35,7 @@ export default function AuthWrapper({ children }) {
   }
 
   function autoLogOut(expireToken) {
-    setTimeout(() => { logOut() }, expireToken)
+    setTimeout(() => { logOut(), localStorage.clear() }, expireToken)
   }
 
   const store = {

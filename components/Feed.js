@@ -32,7 +32,7 @@ export default function Feed() {
   const callback = (entries) => {
     entries.forEach((entry) => {
       let ele = entry.target.childNodes[0];
-      console.log(ele);
+      // console.log(ele);
       ele.play().then(() => {
         if (!ele.paused && !entry.isIntersecting) {
           ele.pause()
@@ -49,7 +49,7 @@ export default function Feed() {
     const elements = document.querySelectorAll(".video-container");
     let postContainer = elements[0].childNodes;
     postContainer.forEach((video) => {
-      console.log(video.childNodes[0]); //video tag
+      // console.log(video.childNodes[0]); //video tag
       observer.observe(video)
     })
     return () => {
