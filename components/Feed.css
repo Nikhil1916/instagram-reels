@@ -9,7 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: white !important;
+  padding: 1rem;
 }
 
 .nav-icons {
@@ -49,6 +50,7 @@
   width: 20rem;
   border-radius: 20px;
   object-fit: contain;
+  scroll-snap-align: start;
   background-color: black;
 }
 
@@ -138,4 +140,13 @@
 
 .post-like-2 > * {
   margin-right: 0.3rem !important;
+}
+
+.comments-cont {
+  margin: 1rem;
+}
+
+.comments-cont > div {
+  display: flex;
+  margin-bottom: 1rem;
 }

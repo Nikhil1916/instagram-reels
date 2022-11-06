@@ -25,10 +25,10 @@ function DisplayComments({ postData }) {
   // }
 
   return (
-    <div>
+    <>
       {
         allComments == null ? (<div className='center-container'><CircularProgress /> </div>) :
-          (<>
+          (<div className='comments-cont'>
             {
               allComments?.map((commentObj, index) => {
                 return (
@@ -39,9 +39,9 @@ function DisplayComments({ postData }) {
                 )
               })
             }
-          </>)
+          </div>)
       }
-    </div>
+    </>
   )
 }
 
