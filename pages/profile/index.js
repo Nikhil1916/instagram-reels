@@ -4,11 +4,13 @@ import Redirect from '../../components/Redirect';
 import { AuthContext } from '../../context/Auth';
 
 function index() {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);.
+  const user = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(user);
   return (
     <>
       {
-        user?.uid ? <Profile /> : <Redirect />
+        user?.user?.uid ? <Profile /> : <Redirect />
       }
     </>
   )

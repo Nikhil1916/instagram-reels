@@ -8,7 +8,9 @@ import UploadButtons from './Upload'
 
 export default function Feed() {
 
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  let user = JSON.parse(localStorage.getItem("userInfo"));
+  user = user?.user;
   const [userData, setUserData] = useState({});
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -36,7 +38,7 @@ export default function Feed() {
           posts.map((post, index) => {
             return (
               <div key={index.toString()}>
-                <Post postData={post} userData={user} />
+                <Post postData={post} userData={userData} />
               </div>
             )
           })

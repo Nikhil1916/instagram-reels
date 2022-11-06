@@ -5,13 +5,13 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+// import AdbIcon from '@mui/icons-material/Adb';
 import logo from '../assets/logo.jpg';
 import Image from 'next/image';
 import HomeIcon from '@mui/icons-material/Home';
@@ -29,6 +29,7 @@ const Navbar = (props) => {
   const { logOut } = useContext(AuthContext);
   const router = useRouter();
   const [isHomePage, setIsHomePage] = useState(true);
+
   useEffect(() => {
     if (router.pathname == "/") {
       setIsHomePage(true);
@@ -36,9 +37,11 @@ const Navbar = (props) => {
       setIsHomePage(false);
     }
 
-  }, [])
+  }, []);
+
   const onLogout = async () => {
     await logOut();
+    localStorage.clear();
     router.push('/login');
   }
 

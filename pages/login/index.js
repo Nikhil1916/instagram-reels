@@ -29,7 +29,8 @@ export default function index() {
   }, [user]);
   const onLogin = async () => {
     try {
-      await login(email, password);
+      const userResponse = await login(email, password);
+      localStorage.setItem("userInfo", JSON.stringify(userResponse));
       await autoLogOut(_tokenResponse.expiresIn * 1000); //auto logout after 1 hr conversion to milliseconds from seconds.
       setLoader(false);
     } catch (error) {

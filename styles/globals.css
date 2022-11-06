@@ -5,3 +5,9 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

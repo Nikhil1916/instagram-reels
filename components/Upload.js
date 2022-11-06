@@ -51,7 +51,8 @@ export default function UploadButtons({ userData }) {
             profileName: userData.fullName,
             profilePhotoURL: userData.profilePhoto,
             userId: userData.uid,
-            timestamp: serverTimestamp()
+            timestamp: serverTimestamp(),
+            comments: []
           }
           await setDoc(doc(db, "posts", uid), postData);
           await updateDoc(doc(db, "users", userData.uid), { posts: arrayUnion(uid) });

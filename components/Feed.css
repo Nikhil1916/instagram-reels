@@ -97,9 +97,7 @@
 
 .modal-container {
   display: flex;
-  /* height: 100%; */
   width: 100%;
-  /* padding: 1rem; */
 }
 
 .video-modal {
@@ -119,12 +117,17 @@
 .comments-modal {
   height: 100%;
   padding: 1rem;
+  width: 60%;
 }
 
 .card1 {
-  height: 50vh;
-  margin-top: 6.5rem;
+  height: 55.5vh;
+  margin-top: 2.8rem;
   margin-bottom: 0.5rem;
+}
+
+.card2 {
+  padding: 0.5rem;
 }
 
 .post-like-2 {

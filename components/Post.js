@@ -1,4 +1,4 @@
-import { Avatar, TextField } from "@mui/material"
+import { Avatar } from "@mui/material"
 import { useEffect } from "react"
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
@@ -6,9 +6,10 @@ import { db } from "../firebase";
 import { useState } from "react";
 import CommentIcon from '@mui/icons-material/Comment';
 import Dialog from '@material-ui/core/Dialog';
-import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
+import Comments from "./Comments";
+import DisplayComments from "./DisplayComments";
 
 function Post({ postData, userData }) {
   const [like, setLike] = useState(false);
@@ -60,18 +61,19 @@ function Post({ postData, userData }) {
           >
             <div className="modal-container">
               <div className="video-modal">
-                <video controls autoPlay={true} src={postData?.postURL} />
+                <video controls autoPlay={false} src={postData?.postURL} />
               </div>
               <div className="comments-modal">
-                <Card className="card1"></Card>
+                <Card className="card1">
+                  <DisplayComments postData={postData} />
+                </Card>
                 <Card className="card2" sx={{ maxWidth: 345 }}>
-                  <Typography sx={{ display: "flex" }}>
+                  <Typography sx={{ display: "flex", marginLeft: "1rem" }}>
                     {postData?.likes?.length == 0 ? "Be the first one to like this post" : `Liked by ${postData?.likes?.length} users.`}
                   </Typography>
                   <div className="post-like-2">
                     <FavoriteIcon className="cursor-pointer" style={like ? { color: "red" } : { color: "black" }} onClick={handleLike} />
-                    <TextField id="outlined-basic" label="Add Comment" variant="outlined" />
-                    <Button variant='contained' color="primary">Post</Button>
+                    <Comments postData={postData} userData={userData} />
                   </div>
                 </Card>
               </div>
